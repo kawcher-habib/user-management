@@ -20,36 +20,25 @@
                     <th scope="col-4">Action</th>
                 </tr>
             </thead>
+            
             <tbody>
+            @foreach($getAllUser as $data)
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>Otto</td>
+                    <th scope="row">{{$data->id}}</th>
+                    <td>{{$data->name}}</td>
+                    <td>{{$data->email}}</td>
+                    <td>{{$data->phone}}</td>
                     <td>
                         <div class="row">
                         <ul class="list-group list-group-horizontal">
                     <li class="list-group-item"><a href="#"><i class="fa fa-pencil fa-fw"></i> Edit</a></li>
                     <li class="list-group-item"><a href="#"><i class="fa fa-trash fa-fw"></i> Delete</a></li>
-                    <li class="list-group-item"><a href="#"><i class="fa fa-eye fa-fw"></i> view</a></li>
+                    <li class="list-group-item"><a href="{{route('getUser',['id'=>$data->id])}}"><i class="fa fa-eye fa-fw"></i> view</a></li>
                     </ul>
                         </div>
                     </td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>Thornton</td>
-                    <td>
-                        <div class="row">
-                            <div class="col-3">Edit</div>
-                            <div class="col-3">View</div>
-                            <div class="col-3">Delete</div>
-                        </div>
-                    </td>
-                </tr>
-                
+                @endforeach
             </tbody>
         </table>
     </div>

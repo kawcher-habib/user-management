@@ -14,9 +14,11 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('user.allUser.index');
-});
+Route::get('/',[UserController::class, 'show']);
+Route::get('/alluser',[UserController::class, 'getAllUser'])->name('alluser');
+
+
 
 Route::get('/addnewuser', [UserController::class, 'getAddForm'])->name('getAddForm');
-Route::post('/submitnewuser', [UserController::class, 'addNewUser'])->name('submit');
+Route::post('/createnewuser', [UserController::class, 'addNewUser'])->name('create');
+Route::get('/user/{id}', [UserController::class, 'getUser'])->name('getUser');
