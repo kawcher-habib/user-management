@@ -31,7 +31,7 @@
                     <td>
                         <div class="row">
                         <ul class="list-group list-group-horizontal">
-                    <li class="list-group-item"><a href="#"><i class="fa fa-pencil fa-fw"></i> Edit</a></li>
+                    <li class="list-group-item"><a href="{{route('editUser', ['id'=>$data->id])}}"><i class="fa fa-pencil fa-fw"></i> Edit</a></li>
                     <li class="list-group-item"><a href="#"><i class="fa fa-trash fa-fw"></i> Delete</a></li>
                     <li class="list-group-item"><a href="{{route('getUser',['id'=>$data->id])}}"><i class="fa fa-eye fa-fw"></i> view</a></li>
                     </ul>

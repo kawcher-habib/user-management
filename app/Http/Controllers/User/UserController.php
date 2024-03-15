@@ -17,6 +17,7 @@ class UserController extends Controller
             $user = User::find($id);
             return view('user.singleUser.profile', ['user'=>$user]);
     }
+
     public function getAllUser()
     {
         $getAllUser = User::orderBy('id', 'desc')->get();
@@ -38,6 +39,30 @@ class UserController extends Controller
  
         
         User::create([
+            'name' => $request->input('name'),
+            'email' => $request->input('email'),
+            'phone' => $request->input('phone'),
+        ]);
+
+        return redirect()->route('alluser')->with("success", "Add New User Successfully");
+    }
+
+    public function getEditUser($id){
+        $user = User::find($id);
+        return view('user.edit.index',['user'=>$user]);
+    }
+
+    public function editUser(Request $request, $id){
+
+        $request->validate([
+            'name' => 'required|string',
+            'email' => 'required|email|unique:users,email',
+            'phone' => 'required|string',
+        ]);
+ 
+        $user = User::findOrFail($id); 
+
+        $user->update([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),

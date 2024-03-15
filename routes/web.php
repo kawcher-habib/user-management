@@ -21,4 +21,6 @@ Route::get('/alluser',[UserController::class, 'getAllUser'])->name('alluser');
 
 Route::get('/addnewuser', [UserController::class, 'getAddForm'])->name('getAddForm');
 Route::post('/createnewuser', [UserController::class, 'addNewUser'])->name('create');
+Route::post('/edituser/{id}', [UserController::class, 'editUser'])->name('edit');
 Route::get('/user/{id}', [UserController::class, 'getUser'])->name('getUser');
+Route::get('/edit/user/{id}', [UserController::class, 'getEditUser'])->name('editUser');
