@@ -4,7 +4,7 @@
 
 <div class="row mt-2 ">
     <div class="col-4">
-        <button type="button" class="btn btn-secondary">Add New User</button>
+        <a href="{{route('getAddForm')}}" class="btn btn-secondary">Add New User</a>
     </div>
     <div class="col-6"></div>
     <div class="col-2"></div>

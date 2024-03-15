@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\User\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -16,3 +17,6 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('user.allUser.index');
 });
+
+Route::get('/addnewuser', [UserController::class, 'getAddForm'])->name('getAddForm');
+Route::post('/submitnewuser', [UserController::class, 'addNewUser'])->name('submit');
