@@ -32,7 +32,7 @@ class UserController extends Controller
     public function addNewUser(Request $request)
     {
         $request->validate([
-            'name' => 'required|string',
+            'name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|string',
         ]);
@@ -55,9 +55,9 @@ class UserController extends Controller
     public function editUser(Request $request, $id){
 
         $request->validate([
-            'name' => 'required|string',
-            'email' => 'required|email|unique:users,email',
-            'phone' => 'required|string',
+            'name' => '',
+            'email' => 'email|unique:users,email',
+            'phone' => '',
         ]);
  
         $user = User::findOrFail($id); 
@@ -68,6 +68,12 @@ class UserController extends Controller
             'phone' => $request->input('phone'),
         ]);
 
-        return redirect()->route('alluser')->with("success", "Add New User Successfully");
+        return redirect()->route('alluser')->with("success", "Edit User Successfully");
+    }
+
+    public function delete($id){
+        $user = User::findOrFail($id)->delete();
+
+        return redirect()->back()->with("success", "User Deleted Successfully");
     }
 }
