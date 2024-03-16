@@ -15,7 +15,7 @@
   </head>
   <body>
     <div class="container mt-3">
-    @include('layouts.nav')
+   <!-- @include('layouts.nav')-->
     @yield('content')
     </div>
     <!-- Option 1: Bootstrap Bundle with Popper -->

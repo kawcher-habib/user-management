@@ -8,59 +8,60 @@ use Illuminate\Http\Request;
 
 class UserController extends Controller
 {
-    //
-    public function show()
-    {
-        return view('user.allUser.index');
-    }
-    public function getUser($id){
-            $user = User::find($id);
-            return view('user.singleUser.profile', ['user'=>$user]);
-    }
 
-    public function getAllUser()
+    public function index()
     {
         $getAllUser = User::orderBy('id', 'desc')->get();
-        return view('user.allUser.index', ['getAllUser' => $getAllUser]);
+        return view('user.index', ['getAllUser' => $getAllUser]);
     }
 
-    public function getAddForm()
+    public function show($id)
     {
-        return view('user.create.index');
+        $user = User::find($id);
+        return view('user.singleUser.profile', ['user' => $user]);
     }
 
-    public function addNewUser(Request $request)
+
+
+    public function create()
+    {
+        return view('user.create');
+    }
+
+    public function store(Request $request)
     {
         $request->validate([
             'name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|string',
         ]);
- 
-        
+
+
         User::create([
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),
         ]);
 
-        return redirect()->route('alluser')->with("success", "Add New User Successfully");
+        return redirect()->route('users.index')->with("success", "Add New User Successfully");
     }
 
-    public function getEditUser($id){
+    public function edit($id)
+    {
         $user = User::find($id);
-        return view('user.edit.index',['user'=>$user]);
+        return view('user.edit', ['user' => $user]);
     }
 
-    public function editUser(Request $request, $id){
+    public function update(Request $request, $id)
+    {
 
         $request->validate([
             'name' => '',
             'email' => 'email|unique:users,email',
             'phone' => '',
         ]);
- 
-        $user = User::findOrFail($id); 
+
+        $user = User::findOrFail($id);
 
         $user->update([
             'name' => $request->input('name'),
@@ -68,10 +69,11 @@ class UserController extends Controller
             'phone' => $request->input('phone'),
         ]);
 
-        return redirect()->route('alluser')->with("success", "Edit User Successfully");
+        return redirect()->route('users.index')->with("success", "Edit User Successfully");
     }
 
-    public function delete($id){
+    public function destroy($id)
+    {
         $user = User::findOrFail($id)->delete();
 
         return redirect()->back()->with("success", "User Deleted Successfully");

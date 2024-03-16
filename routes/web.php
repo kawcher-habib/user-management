@@ -14,14 +14,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[UserController::class, 'show']);
-Route::get('/alluser',[UserController::class, 'getAllUser'])->name('alluser');
+Route::get('/',[UserController::class, 'index']);
+Route::get('/users',[UserController::class, 'index'])->name('users.index');
 
 
 
-Route::get('/addnewuser', [UserController::class, 'getAddForm'])->name('getAddForm');
-Route::post('/createnewuser', [UserController::class, 'addNewUser'])->name('create');
-Route::post('/edituser/{id}', [UserController::class, 'editUser'])->name('edit');
-Route::get('/user/{id}', [UserController::class, 'getUser'])->name('getUser');
-Route::get('/edit/user/{id}', [UserController::class, 'getEditUser'])->name('editUser');
-Route::get('/delete/{id}', [UserController::class, 'delete'])->name('deleteUser');
+Route::get('user/create', [UserController::class, 'create'])->name('user.create');
+Route::post('/user/store', [UserController::class, 'store'])->name('user.store');
+Route::get('/user/edit/{id}', [UserController::class, 'edit'])->name('user.edit');
+Route::post('/user/update/{id}', [UserController::class, 'update'])->name('user.update');
+Route::get('/user/show/{id}', [UserController::class, 'show'])->name('user.show');
+Route::get('/user/delete/{id}', [UserController::class, 'destroy'])->name('user.destroy');

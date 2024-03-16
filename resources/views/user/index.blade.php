@@ -2,14 +2,19 @@
 
 @section('content')
 
-<div class="row mt-2 ">
+<div class="row mt-5 ">
     <div class="col-4">
-        <a href="{{route('getAddForm')}}" class="btn btn-secondary">Add New User</a>
+        <a href="{{route('user.create')}}" class="btn btn-secondary">Add New User</a>
     </div>
-    <div class="col-6"></div>
-    <div class="col-2"></div>
+    <div class="col-4"></div>
+    <div class="col-4">
+    <form class="d-flex">
+        <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+        <button class="btn btn-outline-success" type="submit">Search</button>
+      </form>
+    </div>
     <!-- Table Area -->
-    <div class="row mt-3">
+    <div class="row mt-4">
         <table class="table">
             <thead>
                 <tr class="">
@@ -31,9 +36,9 @@
                     <td>
                         <div class="row">
                         <ul class="list-group list-group-horizontal">
-                    <li class="list-group-item"><a href="{{route('editUser', ['id'=>$data->id])}}"><i class="fa fa-pencil fa-fw"></i> Edit</a></li>
-                    <li class="list-group-item"><a href="{{route('deleteUser', ['id'=>$data->id])}}"><i class="fa fa-trash fa-fw"></i> Delete</a></li>
-                    <li class="list-group-item"><a href="{{route('getUser',['id'=>$data->id])}}"><i class="fa fa-eye fa-fw"></i> view</a></li>
+                    <li class="list-group-item"><a href="{{route('user.edit', ['id'=>$data->id])}}"><i class="fa fa-pencil fa-fw"></i> Edit</a></li>
+                    <li class="list-group-item"><a href="{{route('user.destroy', ['id'=>$data->id])}}"><i class="fa fa-trash fa-fw"></i> Delete</a></li>
+                    <li class="list-group-item"><a href="{{route('user.show',['id'=>$data->id])}}"><i class="fa fa-eye fa-fw"></i> view</a></li>
                     </ul>
                         </div>
                     </td>
