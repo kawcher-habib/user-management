@@ -25,7 +25,7 @@ class UserController extends Controller
 
     public function create()
     {
-        return view('user.create');
+        return view('auth.registration');
     }
 
     public function store(Request $request)
@@ -34,6 +34,7 @@ class UserController extends Controller
             'name' => 'required|string|min:3',
             'email' => 'required|email|unique:users,email',
             'phone' => 'required|string',
+            'password' => 'required',
         ]);
 
 
@@ -41,6 +42,7 @@ class UserController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'phone' => $request->input('phone'),
+            'password' => $request->input('password'),
         ]);
 
         return redirect()->route('users.index')->with("success", "Add New User Successfully");
